@@ -1,0 +1,14 @@
+#searchForm {
+    margin-top:3%;
+    margin-left:20%;
+    margin-right:20%;
+}
+
+#cardContainer {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    margin-top:3%;
+    gap: 20px;
+}
+
