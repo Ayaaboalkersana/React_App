@@ -19,12 +19,12 @@ function Main() {
 
     useEffect(function (){getData()},[])
   
-    function handelSubmit(event){
+    async function handelSubmit(event){
         event.preventDefault()
         let searchValue = event.target.search.value;
-        let filteredItems = data.filter(function(item){return item.title.toLowerCase().includes(searchValue.toLowerCase())})
-        setItems(filteredItems);
-
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s='+searchValue);
+        const result = await response.json();
+        setItems(result.meals)
     }
   return (
     <>
@@ -38,10 +38,10 @@ function Main() {
             />
             <Button variant="outline-success" type="submit">Search</Button>
           </Form>
-    <div id= "cardContainer" >
+    <div class = "cardContainer" >
     {items.map(function(item){
         return(
-            <CardComp image_url={item.strMealThumb} title={item.strMeal} />
+            <CardComp image_url={item.strMealThumb} title={item.strMeal} description={item.strInstructions} />
 
 )})}
 </div>
