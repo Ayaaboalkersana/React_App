@@ -50,7 +50,9 @@ function Browse() {
       </Form.Select>
       <div className="cardContainer">
         {items.map((item) => (
-          <CardComp image_url={item.strMealThumb} title={item.strMeal} key={item.idMeal}description={item.strInstructions} />
+          <CardComp image_url={item.strMealThumb} title={item.strMeal} key={item.idMeal} description={item.strInstructions} showFavorites={true}
+          showRemove = {false}
+          />
         ))}
       </div>
     </>

@@ -41,7 +41,9 @@ function Main() {
     <div class = "cardContainer" >
     {items.map(function(item){
         return(
-            <CardComp image_url={item.strMealThumb} title={item.strMeal} description={item.strInstructions} />
+            <CardComp image_url={item.strMealThumb} title={item.strMeal} description={item.strInstructions} showFavorites={true} 
+            showRemove = {false}
+            />
 
 )})}
 </div>

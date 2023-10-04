@@ -6,9 +6,23 @@ import { useState } from 'react';
 function CardComp (props){
     const [show, setShow] = useState(false);
     function handelshow(){
-        setShow(!show)
+        setShow(!show)}
 
-    }
+    
+    function saveToLocalStorage(){
+      if(localStorage.getItem("Favorites")){
+      let arr = JSON.parse(localStorage.getItem("Favorites"))
+      arr.push(props)
+      let stringData = JSON.stringify(arr)
+      localStorage.setItem("Favorites",stringData)}
+      else{
+        let arr = []
+        arr.push(props)
+        let stringData = JSON.stringify(arr)
+        localStorage.setItem("Favorites",stringData)} 
+
+      } 
+    
     
     return(
         <>
@@ -17,6 +31,12 @@ function CardComp (props){
         <Card.Body>
           <Card.Title>{props.title}</Card.Title>
           <Button variant="primary" onClick={handelshow}>Show Description</Button>
+          {props.showFavorites? <Button variant="primary" onClick={saveToLocalStorage} >Add To Favorites</Button>
+          : <Button variant="primary" onClick={saveToLocalStorage} style={{display:"none"}}>Add To Favorites</Button>
+          }
+          {props.showRemove? <Button variant="primary" onClick={props.RemoveFromFavorites}>Remove</Button>
+          : <Button variant="primary" onClick={props.RemoveFromFavorites} style={{display:"none"}}>Remove</Button> }
+
         </Card.Body>
       </Card>
        <Modal show={show} onHide={handelshow}>
